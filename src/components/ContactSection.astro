@@ -1,0 +1,187 @@
+---
+/**
+ * 全站统一的「联系方式」区块。
+ *
+ * 只在这里维护一份内容，由 src/components/Footer.astro 覆写 Starlight 页脚后
+ * 挂载到每一个页面的最末尾（含 splash 首页）。
+ * 想改联系方式，改这个文件即可，不需要动任何 .md / .mdx。
+ */
+---
+
+<section class="contact" aria-labelledby="contact-heading">
+	<h2 id="contact-heading">联系方式</h2>
+
+	<div class="groups">
+		<section class="group group--wechat">
+			<h3>1.1 微信</h3>
+			<dl>
+				<dt>微信名</dt>
+				<dd>守民通识</dd>
+				<dt>微信号</dt>
+				<dd>ShouminGeneralist</dd>
+			</dl>
+		</section>
+
+		<section class="group group--qq">
+			<h3>1.2 QQ</h3>
+			<dl>
+				<dt>QQ 号</dt>
+				<dd>3769128922</dd>
+				<dt>QQ 昵称</dt>
+				<dd>shoumingeneralist</dd>
+			</dl>
+		</section>
+
+		<section class="group group--email">
+			<h3>1.3 邮箱</h3>
+			<table>
+				<thead>
+					<tr>
+						<th scope="col">平台</th>
+						<th scope="col">账号</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>谷歌邮箱</td>
+						<td><a href="mailto:shoumingeneralist@gmail.com">shoumingeneralist@gmail.com</a></td>
+					</tr>
+					<tr>
+						<td>126 邮箱</td>
+						<td><a href="mailto:shoumingeneralist@126.com">shoumingeneralist@126.com</a></td>
+					</tr>
+					<tr>
+						<td>QQ 邮箱</td>
+						<td><a href="mailto:3769128922@qq.com">3769128922@qq.com</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+
+		<section class="group group--platform">
+			<h3>1.4 内容平台</h3>
+			<dl>
+				<dt>微信公众号</dt>
+				<dd>守民通识</dd>
+				<dt>抖音</dt>
+				<dd>守民通識_守民通识</dd>
+				<dt>快手</dt>
+				<dd>守民通識_守民通识</dd>
+				<dt>YouTube</dt>
+				<dd>shoumingeneralist</dd>
+			</dl>
+		</section>
+	</div>
+</section>
+
+<style>
+	/* 全部颜色走 Starlight 主题变量，明暗主题自动适配，不写死色值 */
+	.contact {
+		/* 与正文栏宽接近；文章页父容器本就不到这个宽度，等于不起作用，
+		   只对 splash 首页这种宽内容区起作用——让它居中，不在左侧留大片空白 */
+		max-width: 44rem;
+		margin: 3rem auto 0;
+		padding-top: 1.5rem;
+		border-top: 1px solid var(--sl-color-hairline);
+		font-size: var(--sl-text-sm);
+	}
+
+	h2 {
+		margin: 0 0 1.25rem;
+		font-size: 1.15rem;
+		line-height: 1.4;
+		color: var(--sl-color-white);
+	}
+
+	h3 {
+		margin: 0 0 0.5rem;
+		font-size: 0.95rem;
+		font-weight: 600;
+		line-height: 1.5;
+		color: var(--sl-color-white);
+	}
+
+	/* 微信 / QQ 并排两列；邮箱和内容平台需要横向空间，各占整行 */
+	.groups {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 1.25rem 2.5rem;
+	}
+
+	.group--wechat {
+		grid-column: 1;
+	}
+
+	.group--qq {
+		grid-column: 2;
+	}
+
+	.group--email,
+	.group--platform {
+		grid-column: 1 / -1;
+	}
+
+	/* 窄屏退回单列，顺序仍是 微信 → QQ → 邮箱 → 内容平台 */
+	@media (max-width: 34rem) {
+		.groups {
+			grid-template-columns: 1fr;
+		}
+
+		.group--wechat,
+		.group--qq,
+		.group--email,
+		.group--platform {
+			grid-column: 1;
+		}
+	}
+
+	dl {
+		display: grid;
+		grid-template-columns: max-content 1fr;
+		gap: 0.3rem 1rem;
+		margin: 0;
+	}
+
+	dt {
+		color: var(--sl-color-gray-3);
+	}
+
+	dd {
+		margin: 0;
+		color: var(--sl-color-text);
+		overflow-wrap: anywhere;
+	}
+
+	table {
+		width: 100%;
+		max-width: 32rem;
+		border-collapse: collapse;
+	}
+
+	th,
+	td {
+		padding: 0.4rem 0.75rem 0.4rem 0;
+		text-align: start;
+		border-bottom: 1px solid var(--sl-color-hairline);
+		vertical-align: top;
+	}
+
+	th {
+		font-weight: 600;
+		color: var(--sl-color-gray-3);
+	}
+
+	tr:last-child td {
+		border-bottom: 0;
+	}
+
+	a {
+		color: var(--sl-color-text-accent);
+		text-decoration: none;
+		overflow-wrap: anywhere;
+	}
+
+	a:hover {
+		text-decoration: underline;
+	}
+</style>

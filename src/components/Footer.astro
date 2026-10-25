@@ -1,0 +1,14 @@
+---
+/**
+ * 覆写 Starlight 默认页脚（astro.config.mjs 里注册为 components.Footer）。
+ *
+ * <Default /> 保留原页脚的「编辑此页 / 最后更新 / 上一页下一页」，
+ * 之后接上全站统一的联系方式区块——这样它在每个页面（含 splash 首页）都是最后一屏内容，
+ * 而所有 .md / .mdx 源文件一个字都不用改。
+ */
+import Default from '@astrojs/starlight/components/Footer.astro';
+import ContactSection from './ContactSection.astro';
+---
+
+<Default />
+<ContactSection />

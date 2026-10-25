@@ -78,6 +78,15 @@ export default defineConfig({
 				},
 			],
 
+			// 覆写默认页脚：在「编辑此页 / 上一页下一页」之后再挂一个全站统一的联系方式区块。
+			// 内容只维护在 src/components/ContactSection.astro 一份，所有页面自动生效。
+			components: {
+				Footer: './src/components/Footer.astro',
+			},
+
+			// 自定义样式：目前用于压紧页面末尾「今日发布 / 站点 / 图文教程」链接区
+			customCss: ['./src/styles/custom.css'],
+
 			 // 将网站默认语言设置为简体中文
       locales: {
         root: {

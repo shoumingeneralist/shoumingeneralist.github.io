@@ -1,0 +1,60 @@
+/* ============================================================
+   页面末尾的「今日发布 / 站点 / 图文教程」链接表
+   ------------------------------------------------------------
+   用法：在 .md / .mdx 尾部区块前放一行作用域标记
+        <div class="publish-links"></div>
+   紧跟其后的表格会被套上下面的样式，外观与页脚联系方式里的邮箱表一致：
+   第一列平台名、第二列链接，行高与内边距统一，行与行等距。
+
+   注：Starlight 自带的正文样式都在 @layer 里，本文件不进层，
+   优先级天然高于它们，无需 !important。
+   ============================================================ */
+
+.sl-markdown-content .publish-links ~ table {
+	display: table;
+	width: 100%;
+	max-width: 46rem;
+	margin: 0.5rem 0 0;
+	border: 0;
+	border-collapse: collapse;
+	font-size: var(--sl-text-sm);
+	line-height: 1.7;
+}
+
+.sl-markdown-content .publish-links ~ table :is(th, td) {
+	padding: 0.4rem 0.75rem 0.4rem 0;
+	border: 0;
+	border-bottom: 1px solid var(--sl-color-hairline);
+	text-align: start;
+	vertical-align: top;
+	background: none;
+	overflow-wrap: anywhere;
+}
+
+.sl-markdown-content .publish-links ~ table thead th {
+	color: var(--sl-color-gray-3);
+	font-weight: 600;
+}
+
+/* 第一列只放平台名，不折行，两列的起点才对齐得整齐 */
+.sl-markdown-content .publish-links ~ table tbody td:first-child {
+	white-space: nowrap;
+	color: var(--sl-color-text);
+}
+
+.sl-markdown-content .publish-links ~ table tbody tr:last-child :is(td, th) {
+	border-bottom: 0;
+}
+
+.sl-markdown-content .publish-links ~ table a {
+	text-decoration: none;
+}
+
+.sl-markdown-content .publish-links ~ table a:hover {
+	text-decoration: underline;
+}
+
+/* 顶部目录索引跳到表格某一行时，别被固定导航栏挡住 */
+.sl-markdown-content .publish-links ~ table span[id] {
+	scroll-margin-top: 6rem;
+}
